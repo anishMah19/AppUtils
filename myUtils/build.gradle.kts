@@ -5,19 +5,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            groupId = "com.github.anishMah19"
-            artifactId = "AppUtils"
-            version = "0.0.2"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
-}
 android {
     namespace = "com.anish.myutils"
     compileSdk = 33
@@ -48,6 +35,19 @@ android {
     }
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.anishMah19"
+            artifactId = "AppUtils"
+            version = "0.0.2"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+}
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")

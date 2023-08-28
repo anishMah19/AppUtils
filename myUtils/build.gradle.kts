@@ -1,8 +1,23 @@
+import io.grpc.internal.SharedResourceHolder.release
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")
 }
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.anishMah19"
+            artifactId = "AppUtils"
+            version = "0.0.2"
 
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+}
 android {
     namespace = "com.anish.myutils"
     compileSdk = 33
@@ -22,6 +37,7 @@ android {
                 "proguard-rules.pro"
             )
         }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
